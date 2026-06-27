@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────
+   SanityScan Design Tokens
+   Override shadcn defaults with dark-navy theme
+───────────────────────────────────────────── */
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter Fallback', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback', monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-muted: var(--brand-muted);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+}
+
+/* Force dark-navy theme — override everything shadcn sets on :root */
+:root,
+:root.light,
+:root:not(.dark) {
+  color-scheme: dark;
+
+  --background: #071A2D;
+  --foreground: #F0F4F8;
+
+  --card: #0C2340;
+  --card-foreground: #F0F4F8;
+
+  --popover: #0C2340;
+  --popover-foreground: #F0F4F8;
+
+  --primary: #16A34A;
+  --primary-foreground: #FFFFFF;
+
+  --brand: #16A34A;
+  --brand-foreground: #FFFFFF;
+  --brand-muted: rgba(22, 163, 74, 0.12);
+
+  --surface: #0E2444;
+  --surface-raised: #112952;
+
+  --secondary: #112952;
+  --secondary-foreground: #94A3B8;
+
+  --muted: #112952;
+  --muted-foreground: #64748B;
+
+  --accent: #16A34A;
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #EF4444;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #16A34A;
+
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    background-color: #071A2D !important;
+    color: #F0F4F8;
+    scroll-behavior: smooth;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+}
+
+@layer utilities {
+  .card-glass {
+    background: #0E2444;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+  }
+
+  .card-glass-raised {
+    background: #112952;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.25rem;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #16A34A 0%, #34D399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-blur {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(7, 26, 45, 0.88);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 24px rgba(22, 163, 74, 0.25);
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
