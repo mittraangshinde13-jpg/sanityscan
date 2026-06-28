@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "SanityScan",
@@ -40,7 +46,9 @@ export default function RootLayout({
 </Script>
       </head>
 
-      <body>{children}</body>
+      <body className={cormorant.className}>
+  {children}
+</body>
     </html>
   );
 }
